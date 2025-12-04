@@ -32,7 +32,7 @@ function figma_sync_admin_page() {
         check_admin_referer('figma_sync_save_settings');
 
         $token    = isset($_POST['figma_token']) ? wp_unslash($_POST['figma_token']) : '';
-$file_key = sanitize_text_field($_POST['figma_file_key'] ?? '');
+        $file_key = sanitize_text_field($_POST['figma_file_key'] ?? '');
 
 
         update_option('figma_sync_settings', [
@@ -61,14 +61,6 @@ $file_key = sanitize_text_field($_POST['figma_file_key'] ?? '');
             <?php wp_nonce_field('figma_sync_save_settings'); ?>
 
             <table class="form-table">
-                <tr>
-                    <th scope="row"><label for="figma_token">Figma API Token</label></th>
-                    <td>
-                        <input type="password" id="figma_token" name="figma_token" class="regular-text"
-                               value="<?php echo esc_attr($settings['token']); ?>">
-                        <p class="description">Token personnel Figma (Developers → Personal Access Tokens).</p>
-                    </td>
-                </tr>
                 <tr>
                     <th scope="row"><label for="figma_file_key">Figma File Key</label></th>
                     <td>

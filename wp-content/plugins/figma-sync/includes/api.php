@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
  */
 function figma_sync_get_settings() {
 
-    // 🔥 1. Si les constantes wp-config sont définies → priorité absolue
+    // 🔥 Priorité absolue aux constantes wp-config.php
     if (defined('FIGMA_SYNC_TOKEN') && defined('FIGMA_SYNC_FILE_KEY')) {
         return [
             'token'    => FIGMA_SYNC_TOKEN,
@@ -21,7 +21,7 @@ function figma_sync_get_settings() {
         ];
     }
 
-    // 🔥 2. Sinon, fallback vers les settings côté admin (rare)
+    // Sinon fallback sur les options (ne devrait plus être utilisé)
     $settings = get_option('figma_sync_settings', []);
 
     $defaults = [
