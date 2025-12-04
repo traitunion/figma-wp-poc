@@ -12,13 +12,26 @@ if (!defined('ABSPATH')) {
  * Retourne les réglages figma (token, file_key)
  */
 function figma_sync_get_settings() {
+
+    // 🔥 1. Si les constantes wp-config sont définies → priorité absolue
+    if (defined('FIGMA_SYNC_TOKEN') && defined('FIGMA_SYNC_FILE_KEY')) {
+        return [
+            'token'    => FIGMA_SYNC_TOKEN,
+            'file_key' => FIGMA_SYNC_FILE_KEY,
+        ];
+    }
+
+    // 🔥 2. Sinon, fallback vers les settings côté admin (rare)
     $settings = get_option('figma_sync_settings', []);
+
     $defaults = [
         'token'    => '',
         'file_key' => '',
     ];
+
     return array_merge($defaults, is_array($settings) ? $settings : []);
 }
+
 
 /**
  * Appelle l'API Figma (GET) et retourne un tableau PHP.

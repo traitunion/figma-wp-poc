@@ -31,8 +31,9 @@ function figma_sync_admin_page() {
     if (isset($_POST['figma_sync_save_settings'])) {
         check_admin_referer('figma_sync_save_settings');
 
-        $token    = sanitize_text_field($_POST['figma_token'] ?? '');
-        $file_key = sanitize_text_field($_POST['figma_file_key'] ?? '');
+        $token    = isset($_POST['figma_token']) ? wp_unslash($_POST['figma_token']) : '';
+$file_key = sanitize_text_field($_POST['figma_file_key'] ?? '');
+
 
         update_option('figma_sync_settings', [
             'token'    => $token,
