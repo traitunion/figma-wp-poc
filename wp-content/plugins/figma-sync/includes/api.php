@@ -7,6 +7,7 @@
 if (!defined('ABSPATH')) {
     exit;
 }
+error_log("FigmaSync: token is constant=" . (defined('FIGMA_SYNC_TOKEN') ? 'yes' : 'no'));
 
 /**
  * Retourne les réglages figma (token, file_key)
